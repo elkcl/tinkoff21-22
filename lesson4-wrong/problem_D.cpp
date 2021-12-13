@@ -20,13 +20,15 @@
 using namespace std;
 
 typedef long long ll;
+#define double long double
+
+const double eps = 1e-11;
 
 #ifdef DEBUG
 	const int MAXN = 10;
 #else
 	const int MAXN = 1e5;
 #endif
-
 int n;
 
 struct V {
@@ -38,7 +40,7 @@ struct V {
 		x = a, y = b;
 	}
 
-	double len() {
+	[[nodiscard]] double len() const {
 		return sqrt(x * x + y * y);
 	}
 
@@ -57,15 +59,15 @@ struct V {
 };
 
 V operator +(V a, V b) {
-	return V(a.x + b.x, a.y + b.y);
+	return {a.x + b.x, a.y + b.y};
 }
 
 V operator -(V a, V b) {
-	return V(a.x - b.x, a.y - b.y);
+	return {a.x - b.x, a.y - b.y};
 }
 
 V rotate(V v, double alp) {
-	return V(v.x * cos(alp) - v.y * sin(alp), v.x * sin(alp) + v.y * cos(alp));
+	return {v.x * cos(alp) - v.y * sin(alp), v.x * sin(alp) + v.y * cos(alp)};
 }
 
 istream& operator >>(istream &in, V &v) {
@@ -95,20 +97,20 @@ inline void solve() {
 	int r1, r2, r3;
 	cin >> r1 >> r2 >> r3;
 	V AB = B - A;
-	if (AB.len() > r1 + r2) {
+	if (AB.len() > r1 + r2 - eps) {
 		cout << "Impossible\n";
 		return;
 	}
-	if (AB.len() == 0) {
+	if (abs(AB.len()) < eps) {
 		swap(B, C);
 		swap(r2, r3);
 	}
 	AB = B - A;
-	if (AB.len() == 0) {
+	if (abs(AB.len()) < eps) {
 		if (r1 == r2 && r2 == r3) {
 			V x = V(1, 0);
 			x.resz(r1);
-			cout << A + x;
+			cout << A + x << '\n';
 			return;
 		}
 		cout << "Impossible\n";
@@ -120,22 +122,22 @@ inline void solve() {
 	for (int i = 0; i < 100; i++) {
 		double mid = (l + r) / 2;
 		V target = A + rotate(AB, mid);
-		if (dist(target, B) <= r2) {
-			mid = l;
+		if (dist(target, B) <= r2 + eps) {
+			l = mid;
 		}
 		else {
-			mid = r;
+			r = mid;
 		}
 	}
 	V t1 = A + rotate(AB, (l + r) / 2);
 	V t2 = A + rotate(AB, -(l + r) / 2);
 	// cerr << t1 << t2;
-	if (dist(t1, C) == r3) {
-		cout << t1;
+	if (abs(dist(t1, C) - r3) < eps) {
+		cout << t1 << '\n';
 		return;
 	}
-	if (dist(t2, C) == r3) {
-		cout << t2;
+	if (abs(dist(t2, C) - r3) < eps) {
+		cout << t2 << '\n';
 		return;
 	}
 	cout << "Impossible\n";

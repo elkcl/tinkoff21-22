@@ -1,7 +1,7 @@
 #pragma GCC optimize ("O3")
 #include <bits/stdc++.h>
 using namespace std;
-#define y1 _y1
+#define y1 yarr1
 
 const int MAXN = 1e5;
 int x1[MAXN], y1[MAXN], x2[MAXN], y2[MAXN];
@@ -9,7 +9,8 @@ int x1[MAXN], y1[MAXN], x2[MAXN], y2[MAXN];
 vector <int> Xes, Yes;
 
 pair <int, int> tree[MAXN * 8];
-int mod[MAXN * 8];
+//int mod[MAXN * 8];
+vector<int> mod(MAXN * 8, 0);
 
 inline pair <int, int> get_val(int v) {
 	return {tree[v].first + mod[v], tree[v].second};
@@ -24,6 +25,7 @@ inline pair <int, int> merge(pair <int, int> A, pair <int, int> B) {
 inline void push(int v) {
 	mod[v * 2] += mod[v];
 	mod[v * 2 + 1] += mod[v];
+    mod[v] = 0;
 }
 
 inline void build (int v, int l, int r) {
@@ -55,7 +57,7 @@ signed main() {
 	int n;
 	cin >> n;
 	if (n == 0) {
-		cout << 0 << endl;
+		cout << 0 << '\n';
 		return 0;
 	}
 	for (int i = 0; i < n; i++) {
@@ -91,6 +93,6 @@ signed main() {
 			num -= e.second;
 		ans += num * (Xes[i + 1] - Xes[i]);
 	}
-	cout << ans << endl;
+	cout << ans << '\n';
 	return 0;
 }

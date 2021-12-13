@@ -60,11 +60,11 @@ istream & operator >> (istream &in, V &a) {
 
 V all[MAXN];
 
-int s(V a, V b, V c) {
+ll s(V a, V b, V c) {
 	return abs((b - a) ^ (c - a));
 }
 
-int check(V a, V b, V c, V x) {
+bool check(V a, V b, V c, V x) {
 	return s(a, b, c) == s(x, a, b) + s(x, b, c) + s(x, c, a);
 }
 
@@ -79,11 +79,10 @@ inline void solve() {
 	}
 	for (int i = 0; i < m; i++) {
 		V x;
-		cin >> x;
-		int l = 0;
+		cin >> x;		int l = 0;
 		int r = n - 1;
 		while (l + 1 < r) {
-			int mid = (l + r) >> 1;
+			int mid = (l + r) / 2;
 			V a = all[mid] - all[0];
 			V b = x - all[0];
 			if ((a ^ b) > 0) {

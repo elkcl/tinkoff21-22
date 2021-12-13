@@ -23,6 +23,8 @@ using namespace std;
 typedef long long ll;
 typedef unsigned long long ull;
 
+#define int ll
+
 #ifdef DEBUG
 	const int MAXN = 4e3 + 1;
 	const int MAXLOG = 7;
@@ -36,7 +38,7 @@ typedef unsigned long long ull;
 
 mt19937 rng(time(0));
 
-const int INF = 1e9;
+const int INF = 1e18;
 const int MOD = 1e9 + 7;
 
 int n;

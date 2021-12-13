@@ -1,3 +1,7 @@
+#pragma GCC optimize("Ofast")
+#pragma GCC target("avx,avx2,sse,sse2,sse3,ssse3,sse4,sse4.1,sse4.2")
+#pragma GCC optimize("unroll-loops")
+
 #include <iostream>
 #include <vector>
 #include <map>
@@ -37,7 +41,7 @@ inline void init() {
 	}
 }
 
-int get(string S, int block_size) {
+int get(string &S, int block_size) {
 	n = S.size() / block_size * (block_size + 1);
 	int min_right = 1e9;
 	int max_left = -1;
