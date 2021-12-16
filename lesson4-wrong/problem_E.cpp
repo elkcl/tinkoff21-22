@@ -30,15 +30,15 @@ typedef unsigned long long ull;
 	const int MAXLOG = 7;
 	const int MAXSQRT = 4;
 #else
-	const int MAXN = 1e6 + 10;
-	const int MAXLOG = 29;
+	const int MAXN = 5e6 + 10;
+	const int MAXLOG = 30;
 	const int MAXSQRT = 400;
 	#define cerr if (false) cerr
 #endif
 
 mt19937 rng(time(0));
 
-const int INF = 1e18;
+const int INF = 2.5e18;
 const int MOD = 1e9 + 7;
 
 int n;

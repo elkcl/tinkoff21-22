@@ -2,7 +2,7 @@
 using namespace std;
 struct el{
     int val, mod;
-    el (int _val = 0, int _mod = 0){
+    explicit el (int _val = 0, int _mod = 0){
         val = _val;
         mod = _mod;
     }

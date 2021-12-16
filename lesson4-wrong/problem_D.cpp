@@ -27,7 +27,7 @@ const double eps = 1e-11;
 #ifdef DEBUG
 	const int MAXN = 10;
 #else
-	const int MAXN = 1e5;
+	const int MAXN = 1e6;
 #endif
 int n;
 
@@ -76,7 +76,7 @@ istream& operator >>(istream &in, V &v) {
 }
 
 ostream& operator <<(ostream &out, V v) {
-	out << fixed << setprecision(10) << v.x << ' ' << v.y << '\n';
+	out << fixed << setprecision(10) << v.x << ' ' << v.y;
 	return out;
 }
 

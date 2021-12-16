@@ -39,6 +39,10 @@ inline void solve() {
 	init();
 	int lft = n - 1;
 	k--;
+    if (lft == 0 && k == 0) {
+        cout << "0\n";
+        return;
+    }
 	if (k == 0 || lft % k != 0) {
 		cout << "-1\n";
 		return;
