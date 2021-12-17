@@ -22,7 +22,7 @@ using namespace std;
 typedef long long ll;
 #define double long double
 
-const double eps = 1e-11;
+const double eps = 1e-9;
 
 #ifdef DEBUG
 	const int MAXN = 10;
@@ -97,16 +97,16 @@ inline void solve() {
 	int r1, r2, r3;
 	cin >> r1 >> r2 >> r3;
 	V AB = B - A;
-	if (AB.len() > r1 + r2 - eps) {
+	if (AB.len() > r1 + r2) {
 		cout << "Impossible\n";
 		return;
 	}
-	if (abs(AB.len()) < eps) {
+	if (abs(AB.len()) <= eps) {
 		swap(B, C);
 		swap(r2, r3);
 	}
 	AB = B - A;
-	if (abs(AB.len()) < eps) {
+	if (abs(AB.len()) <= eps) {
 		if (r1 == r2 && r2 == r3) {
 			V x = V(1, 0);
 			x.resz(r1);
@@ -119,10 +119,10 @@ inline void solve() {
 	AB.resz(r1);
 	double l = 0;
 	double r = PI;
-	for (int i = 0; i < 100; i++) {
+	for (int i = 0; i < 300; i++) {
 		double mid = (l + r) / 2;
 		V target = A + rotate(AB, mid);
-		if (dist(target, B) <= r2 + eps) {
+		if (dist(target, B) < r2) {
 			l = mid;
 		}
 		else {
@@ -132,11 +132,11 @@ inline void solve() {
 	V t1 = A + rotate(AB, (l + r) / 2);
 	V t2 = A + rotate(AB, -(l + r) / 2);
 	// cerr << t1 << t2;
-	if (abs(dist(t1, C) - r3) < eps) {
+	if (abs(dist(t1, C) - r3) <= eps) {
 		cout << t1 << '\n';
 		return;
 	}
-	if (abs(dist(t2, C) - r3) < eps) {
+	if (abs(dist(t2, C) - r3) <= eps) {
 		cout << t2 << '\n';
 		return;
 	}
