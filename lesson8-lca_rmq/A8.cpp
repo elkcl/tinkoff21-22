@@ -74,8 +74,9 @@ int main() {
     for (int i = 0; i < n - 1; ++i) {
         int s, f;
         cin >> s >> f;
-        g[s-1].push_back(f-1);
-        g[f-1].push_back(s-1);
+        --s, --f;
+        g[s].push_back(f);
+        g[f].push_back(s);
     }
 
     vc used(n, false);
@@ -112,7 +113,7 @@ int main() {
     }
 
     vi res(n, 0);
-    used.resize(n, false);
+    fill(all(used), false);
     dfs2(g, used, s, res, 0, 0);
     int ans = *max_element(all(res));
     cout << ans << '\n';
